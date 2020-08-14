@@ -32,7 +32,7 @@ export default {
         this.$router.push({ path: "/" });
       } else {
         let errorResult = await result.json();
-        let errorMessage = "Ha ocurrido un error crear el permiso";
+        let errorMessage = "Ha ocurrido un error al crear el permiso";
 
         if (errorResult && errorResult.error) {
           errorMessage = errorResult.error;
