@@ -5,8 +5,10 @@ using Api.Application.UseCases.Permissions.Dtos;
 using Api.Application.UseCases.Permissions.Queries.GetAllPermissions;
 using Api.Application.UseCases.Permissions.Queries.GetPermissionById;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
@@ -23,6 +25,8 @@ namespace Api.Controllers
         }
 
         [HttpGet]
+        [Produces(typeof(IEnumerable<PermissionDto>))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IEnumerable<PermissionDto>> GetAll()
         {
             var permissions = await _mediator.Send(new GetAllPermissionsQuery());
@@ -30,6 +34,9 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Produces(typeof(PermissionDto))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<PermissionDto> GetById(int id)
         {
             var permission = await _mediator.Send(new GetPermissionByIdQuery
@@ -40,12 +47,19 @@ namespace Api.Controllers
         }
 
         [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Task Create([FromBody] CreatePermissionCommand createPermissionCommand)
         {
             return _mediator.Send(createPermissionCommand);
         }
 
         [HttpPut("{id}")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(int id, [FromBody] UpdatePermissionCommand updatePermissionCommand)
         {
             if (id != updatePermissionCommand.Id)
@@ -61,6 +75,8 @@ namespace Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public Task Delete(int id)
         {
             return _mediator.Send(new DeletePermissionCommand
