@@ -7,5 +7,6 @@ namespace Api.Application.Common.Interfaces.Repositories
     public interface PermissionTypesRepository
     {
         Task<IEnumerable<PermissionType>> GetAllAsync();
+        Task<bool> ExistsAsync(short id);
     }
 }

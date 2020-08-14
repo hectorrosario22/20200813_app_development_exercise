@@ -15,6 +15,11 @@ namespace Api.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
+        public Task<bool> ExistsAsync(short id)
+        {
+            return _dbContext.PermissionTypes.AnyAsync(d => d.Id == id);
+        }
+
         public async Task<IEnumerable<PermissionType>> GetAllAsync()
         {
             var permissionTypes = await _dbContext.PermissionTypes.ToListAsync();
