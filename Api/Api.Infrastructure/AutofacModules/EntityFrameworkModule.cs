@@ -26,7 +26,7 @@ namespace Api.Infrastructure.AutofacModules
                 var dbContextOptions = new DbContextOptions<TContext>(new Dictionary<Type, IDbContextOptionsExtension>());
                 var optionsBuilder = new DbContextOptionsBuilder<TContext>(dbContextOptions)
                     .UseApplicationServiceProvider(serviceProvider)
-                    .UseSqlServer(configuration.GetConnectionString("ApiConnection"));
+                    .UseSqlServer(configuration.GetConnectionString("ApiConnection"), d => d.MigrationsAssembly("Api"));
 
                 return optionsBuilder.Options;
             }).As<DbContextOptions<TContext>>()

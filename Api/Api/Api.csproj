@@ -5,9 +5,19 @@
     <UserSecretsId>935f2c35-bfe6-4b13-934e-9a9f176e2572</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\20200814024929_InitialScript.cs" />
+    <Compile Remove="Migrations\20200814024929_InitialScript.Designer.cs" />
+    <Compile Remove="Migrations\20200814025042_InitialScript.cs" />
+    <Compile Remove="Migrations\20200814025042_InitialScript.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Api.Infrastructure\Api.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>
