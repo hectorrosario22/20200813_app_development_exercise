@@ -40,6 +40,14 @@ namespace Api
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
+
+            services.AddCors(options => options.AddDefaultPolicy(policy =>
+            {
+                policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+
             services.AddControllers();
         }
 
@@ -60,6 +68,7 @@ namespace Api
             }
 
             app.UseHttpsRedirection();
+            app.UseCors();
             app.UseRouting();
             app.UseAuthorization();
 
