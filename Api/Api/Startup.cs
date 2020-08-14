@@ -1,4 +1,5 @@
 using Api.Application;
+using Api.Common.Middlewares;
 using Api.Infrastructure;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -67,6 +68,7 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
             app.UseCors();
             app.UseRouting();

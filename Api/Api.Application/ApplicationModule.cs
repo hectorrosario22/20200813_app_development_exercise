@@ -9,6 +9,7 @@ namespace Api.Application
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<AutoMapperModule>();
+            builder.RegisterModule<FluentValidationModule>();
             builder.AddMediatR(ThisAssembly);
 
             base.Load(builder);
