@@ -19,7 +19,7 @@ namespace Api.Controllers
 
         public async Task<IEnumerable<PermissionTypeDto>> GetAll()
         {
-            var permissionTypeDtos = await _mediator.Send(new GetAllPermissionTypesRequest());
+            var permissionTypeDtos = await _mediator.Send(new GetAllPermissionTypesQuery());
             return permissionTypeDtos;
         }
     }

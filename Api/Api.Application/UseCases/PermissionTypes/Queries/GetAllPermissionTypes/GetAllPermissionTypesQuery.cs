@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Api.Application.UseCases.PermissionTypes.Queries.GetAllPermissionTypes
 {
-    public class GetAllPermissionTypesRequest : IRequest<IEnumerable<PermissionTypeDto>>
+    public class GetAllPermissionTypesQuery : IRequest<IEnumerable<PermissionTypeDto>>
     {
     }
 }
