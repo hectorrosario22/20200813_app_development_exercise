@@ -100,6 +100,11 @@ export default {
       },
     };
   },
+  watch: {
+    permission() {
+      this.localPermission = { ...this.permission };
+    },
+  },
   methods: {
     onSave() {
       this.$emit("save", { ...this.localPermission });
@@ -126,9 +131,6 @@ export default {
   },
   created() {
     this.loadPermissionTypes();
-  },
-  mounted() {
-    this.localPermission = { ...this.permission };
   },
 };
 </script>

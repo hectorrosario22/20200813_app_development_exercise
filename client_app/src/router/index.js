@@ -14,6 +14,11 @@ const routes = [
     path: '/permissions/create',
     name: 'CreatePermission',
     component: () => import('@/views/permissions/CreatePermission.vue')
+  },
+  {
+    path: '/permissions/update/:id',
+    name: 'UpdatePermission',
+    component: () => import('@/views/permissions/UpdatePermission.vue')
   }
 ]
 
