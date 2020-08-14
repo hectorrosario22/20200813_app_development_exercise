@@ -8,5 +8,6 @@ namespace Api.Application.Common.Interfaces.Repositories
         Task<Permission> GetByIdAsync(int id);
         Task CreateAsync(Permission permission);
         Task UpdateAsync(Permission permission);
+        Task DeleteAsync(Permission permission);
     }
 }
