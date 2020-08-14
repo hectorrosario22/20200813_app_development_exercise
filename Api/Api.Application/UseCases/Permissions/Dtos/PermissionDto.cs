@@ -9,7 +9,7 @@ namespace Api.Application.UseCases.Permissions.Dtos
         public int Id { get; set; }
         public string EmployeeFirstName { get; set; }
         public string EmployeeLastName { get; set; }
-        public short PermissionTypeId { get; set; }
+        public string PermissionTypeDescription { get; set; }
         public DateTimeOffset PermissionDate { get; set; }
     }
 }
