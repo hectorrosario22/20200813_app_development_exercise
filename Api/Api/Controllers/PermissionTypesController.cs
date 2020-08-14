@@ -17,6 +17,7 @@ namespace Api.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
         public async Task<IEnumerable<PermissionTypeDto>> GetAll()
         {
             var permissionTypeDtos = await _mediator.Send(new GetAllPermissionTypesQuery());
