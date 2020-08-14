@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Api.Infrastructure.Persistence.Repositories
 {
-    public class SqlServerPermissionTypeRepository : PermissionTypesRepository
+    public class SqlServerPermissionTypesRepository : PermissionTypesRepository
     {
         private readonly ApiDbContext _dbContext;
 
-        public SqlServerPermissionTypeRepository(ApiDbContext dbContext)
+        public SqlServerPermissionTypesRepository(ApiDbContext dbContext)
         {
             _dbContext = dbContext;
         }
