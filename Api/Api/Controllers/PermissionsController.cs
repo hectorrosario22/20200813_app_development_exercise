@@ -1,4 +1,5 @@
 ﻿using Api.Application.UseCases.Permissions.Commands.CreatePermission;
+using Api.Application.UseCases.Permissions.Commands.DeletePermission;
 using Api.Application.UseCases.Permissions.Commands.UpdatePermission;
 using Api.Application.UseCases.Permissions.Dtos;
 using Api.Application.UseCases.Permissions.Queries.GetAllPermissions;
@@ -57,6 +58,15 @@ namespace Api.Controllers
 
             await _mediator.Send(updatePermissionCommand);
             return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public Task Delete(int id)
+        {
+            return _mediator.Send(new DeletePermissionCommand
+            {
+                Id = id
+            });
         }
     }
 }
