@@ -47,7 +47,7 @@ export default {
   },
   filters: {
     formatDate(date) {
-      return moment(date).lang("es-do").format("DD [de] MMMM [del] YYYY");
+      return moment(date).locale("es-do").format("DD [de] MMMM [del] YYYY");
     },
   },
 };
