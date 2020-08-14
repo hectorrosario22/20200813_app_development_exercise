@@ -26,6 +26,7 @@
               :to="'/permissions/update/' + permission.id"
               class="btn btn-sm btn-info"
             >Editar</router-link>
+            <button class="ml-1 btn btn-sm btn-danger" @click="onDelete(permission)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -44,16 +45,44 @@ export default {
     };
   },
   methods: {
-    async getAllPermissions() {
+    async loadPermissions() {
       const url = `${process.env.VUE_APP_API_URL}/permissions`;
       let result = await fetch(url, {
         method: "GET",
       });
       this.permissions = await result.json();
     },
+    async onDelete(permission) {
+      const confirmMessage = `¿Está seguro de eliminar el permiso para ${permission.permissionTypeDescription} de ${permission.employeeFirstName} ${permission.employeeLastName}?`;
+      if (window.confirm(confirmMessage)) {
+        const url = `${process.env.VUE_APP_API_URL}/permissions/${permission.id}`;
+        let result = await fetch(url, {
+          method: "DELETE",
+        });
+
+        if (result.status >= 200 && result.status <= 299) {
+          window.alert("El Permiso ha sido eliminado correctamente");
+          this.loadPermissions();
+        } else {
+          let errorResult = await result.json();
+          let errorMessage = "Ha ocurrido un error al eliminar el permiso";
+
+          if (errorResult && errorResult.error) {
+            errorMessage = errorResult.error;
+          } else if (errorResult && errorResult.errors) {
+            errorMessage = "";
+            errorResult.errors.forEach((error) => {
+              errorMessage += `${error}\n`;
+            });
+          }
+
+          window.alert(errorMessage);
+        }
+      }
+    },
   },
   created() {
-    this.getAllPermissions();
+    this.loadPermissions();
   },
   filters: {
     formatDate(date) {
