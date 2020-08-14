@@ -4,18 +4,26 @@
       <router-link to="/permissions/create" class="btn btn-primary">Crear Permiso</router-link>
     </div>
     <table class="table table-striped table-bordered">
+      <caption style="caption-side: top">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Buscar por el Nombre del Empleado, Apellido del Empleado y Tipo de Permiso"
+          v-model="search"
+        />
+      </caption>
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Nombre Empleado</th>
-          <th scope="col">Apellido Empleado</th>
-          <th scope="col">Tipo Permiso</th>
-          <th scope="col">Fecha Permiso</th>
+          <th scope="col">Nombre del Empleado</th>
+          <th scope="col">Apellido del Empleado</th>
+          <th scope="col">Tipo de Permiso</th>
+          <th scope="col">Fecha del Permiso</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(permission, index) in permissions" :key="index">
+        <tr v-for="(permission, index) in permissionsFiltered" :key="index">
           <th scope="row" v-text="permission.id">1</th>
           <td v-text="permission.employeeFirstName"></td>
           <td v-text="permission.employeeLastName"></td>
@@ -42,6 +50,7 @@ export default {
   data() {
     return {
       permissions: [],
+      search: "",
     };
   },
   methods: {
@@ -83,6 +92,30 @@ export default {
   },
   created() {
     this.loadPermissions();
+  },
+  computed: {
+    permissionsFiltered() {
+      if (!this.permissions) return [];
+
+      const search = this.search.toLowerCase().trim();
+      return this.permissions.filter((permission) => {
+        const employeeFirstName = permission.employeeFirstName
+          .toLowerCase()
+          .trim();
+        const employeeLastName = permission.employeeLastName
+          .toLowerCase()
+          .trim();
+        const permissionTypeDescription = permission.permissionTypeDescription
+          .toLowerCase()
+          .trim();
+
+        return (
+          employeeFirstName.startsWith(search) ||
+          employeeLastName.startsWith(search) ||
+          permissionTypeDescription.startsWith(search)
+        );
+      });
+    },
   },
   filters: {
     formatDate(date) {
