@@ -13,7 +13,7 @@ namespace Api.Infrastructure.Persistence.Configurations
             builder.Property(d => d.EmployeeFirstName).IsRequired().HasMaxLength(100);
             builder.Property(d => d.EmployeeLastName).IsRequired().HasMaxLength(100);
             builder.Property(d => d.PermissionTypeId).IsRequired();
-            builder.Property(d => d.PermissionDate).IsRequired();
+            builder.Property(d => d.PermissionDate).IsRequired().HasColumnType("date");
         }
     }
 }
