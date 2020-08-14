@@ -27,6 +27,11 @@ namespace Api.Infrastructure.Persistence.Repositories
             return _apiDbContext.SaveChangesAsync();
         }
 
+        public Task<bool> ExistsAsync(int id)
+        {
+            return _apiDbContext.Permissions.AnyAsync(d => d.Id == id);
+        }
+
         public async Task<IEnumerable<Permission>> GetAllAsync()
         {
             var permissions = await _apiDbContext.Permissions

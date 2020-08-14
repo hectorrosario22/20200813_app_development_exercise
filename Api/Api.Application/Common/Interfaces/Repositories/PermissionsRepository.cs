@@ -11,5 +11,6 @@ namespace Api.Application.Common.Interfaces.Repositories
         Task CreateAsync(Permission permission);
         Task UpdateAsync(Permission permission);
         Task DeleteAsync(Permission permission);
+        Task<bool> ExistsAsync(int id);
     }
 }
