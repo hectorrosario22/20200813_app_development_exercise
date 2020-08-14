@@ -35,5 +35,4 @@ namespace Api.Application.Common.Behaviours
             return next();
         }
     }
-
 }

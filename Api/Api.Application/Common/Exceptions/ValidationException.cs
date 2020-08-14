@@ -7,28 +7,21 @@ namespace Api.Application.Common.Exceptions
 {
     public class ValidationException : Exception
     {
-        public IDictionary<string, string[]> Errors { get; }
+        public List<string> Errors { get; }
 
         public ValidationException() : base("Han ocurrido uno o más errores de validación")
         {
-            Errors = new Dictionary<string, string[]>();
+            Errors = new List<string>();
         }
 
         public ValidationException(List<ValidationFailure> failures) : this()
         {
-            var propertyNames = failures
-                .Select(d => d.PropertyName)
-                .Distinct();
+            var errorMessages = failures
+                .Select(d => d.ErrorMessage)
+                .Distinct()
+                .ToArray();
 
-            foreach (var propertyName in propertyNames)
-            {
-                var propertyFailures = failures
-                    .Where(d => d.PropertyName == propertyName)
-                    .Select(d => d.ErrorMessage)
-                    .ToArray();
-
-                Errors.Add(propertyName, propertyFailures);
-            }
+            Errors.AddRange(errorMessages);
         }
     }
 }
