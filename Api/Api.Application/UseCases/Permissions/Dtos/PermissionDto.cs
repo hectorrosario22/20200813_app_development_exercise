@@ -11,6 +11,6 @@ namespace Api.Application.UseCases.Permissions.Dtos
         public string EmployeeLastName { get; set; }
         public short PermissionTypeId { get; set; }
         public string PermissionTypeDescription { get; set; }
-        public DateTimeOffset PermissionDate { get; set; }
+        public DateTime PermissionDate { get; set; }
     }
 }
