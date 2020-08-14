@@ -1,6 +1,9 @@
 <template>
   <div>
-    <table class="table table-striped">
+    <div class="mt-2 mb-2">
+      <router-link to="/permissions/create" class="btn btn-primary">Crear Permiso</router-link>
+    </div>
+    <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th scope="col">Id</th>
