@@ -29,13 +29,17 @@ namespace Api.Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Permission>> GetAllAsync()
         {
-            var permissions = await _apiDbContext.Permissions.ToListAsync();
+            var permissions = await _apiDbContext.Permissions
+                .Include(d => d.PermissionType)
+                .ToListAsync();
             return permissions;
         }
 
         public async Task<Permission> GetByIdAsync(int id)
         {
-            var permission = await _apiDbContext.Permissions.FindAsync(id);
+            var permission = await _apiDbContext.Permissions
+                .Include(d => d.PermissionType)
+                .FirstOrDefaultAsync(d => d.Id == id);
             return permission;
         }
 
