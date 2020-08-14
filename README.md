@@ -19,6 +19,12 @@ Colocar la url del api en el archivo ```.env``` que se encuentra en la carpeta `
 VUE_APP_API_URL="{COLOCAR URL DEL API AQUI}"
 ```
 
+Aplicar las migraciones en el Proyecto ```Api.csproj``` utilizando la consola de ```Visual Studio```
+##### Asegurese de que los ConnectionStrings del archivo ```appsettings.json``` estén configurados para su Base de Datos
+```bash
+Update-Database
+```
+
 Ejecutar el Proyecto ```Api.csproj``` utilizando ```Visual Studio``` o ```dotnet```
 ##### Ejemplo usando ```dotnet```
 ```bash
