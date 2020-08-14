@@ -11,6 +11,7 @@
           <th scope="col">Apellido Empleado</th>
           <th scope="col">Tipo Permiso</th>
           <th scope="col">Fecha Permiso</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,12 @@
           <td v-text="permission.employeeLastName"></td>
           <td v-text="permission.permissionTypeDescription"></td>
           <td>{{ permission.permissionDate | formatDate }}</td>
+          <td>
+            <router-link
+              :to="'/permissions/update/' + permission.id"
+              class="btn btn-sm btn-info"
+            >Editar</router-link>
+          </td>
         </tr>
       </tbody>
     </table>
