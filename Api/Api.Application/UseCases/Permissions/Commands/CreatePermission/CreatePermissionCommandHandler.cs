@@ -21,7 +21,8 @@ namespace Api.Application.UseCases.Permissions.Commands.CreatePermission
             {
                 EmployeeFirstName = request.EmployeeFirstName,
                 EmployeeLastName = request.EmployeeLastName,
-                PermissionTypeId = request.PermissionTypeId
+                PermissionTypeId = request.PermissionTypeId,
+                PermissionDate = request.PermissionDate
             };
             return _permissionsRepository.CreateAsync(permission);
         }

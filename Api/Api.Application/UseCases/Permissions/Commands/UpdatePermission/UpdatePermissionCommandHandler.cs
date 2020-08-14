@@ -20,6 +20,7 @@ namespace Api.Application.UseCases.Permissions.Commands.UpdatePermission
             permission.EmployeeFirstName = request.EmployeeFirstName;
             permission.EmployeeLastName = request.EmployeeLastName;
             permission.PermissionTypeId = request.PermissionTypeId;
+            permission.PermissionDate = request.PermissionDate;
 
             await _permissionsRepository.UpdateAsync(permission);
         }
