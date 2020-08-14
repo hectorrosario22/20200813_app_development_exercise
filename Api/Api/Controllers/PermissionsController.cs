@@ -1,4 +1,5 @@
-﻿using Api.Application.UseCases.Permissions.Dtos;
+﻿using Api.Application.UseCases.Permissions.Commands.CreatePermission;
+using Api.Application.UseCases.Permissions.Dtos;
 using Api.Application.UseCases.Permissions.Queries.GetAllPermissions;
 using Api.Application.UseCases.Permissions.Queries.GetPermissionById;
 using MediatR;
@@ -34,6 +35,12 @@ namespace Api.Controllers
                 Id = id
             });
             return permission;
+        }
+
+        [HttpPost]
+        public Task Create([FromBody] CreatePermissionCommand createPermissionCommand)
+        {
+            return _mediator.Send(createPermissionCommand);
         }
     }
 }
