@@ -1,4 +1,5 @@
 ﻿using Api.Application.UseCases.Permissions.Commands.CreatePermission;
+using Api.Application.UseCases.Permissions.Commands.UpdatePermission;
 using Api.Application.UseCases.Permissions.Dtos;
 using Api.Application.UseCases.Permissions.Queries.GetAllPermissions;
 using Api.Application.UseCases.Permissions.Queries.GetPermissionById;
@@ -41,6 +42,21 @@ namespace Api.Controllers
         public Task Create([FromBody] CreatePermissionCommand createPermissionCommand)
         {
             return _mediator.Send(createPermissionCommand);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdatePermissionCommand updatePermissionCommand)
+        {
+            if (id != updatePermissionCommand.Id)
+            {
+                return BadRequest(new
+                {
+                    error = "Los identificadores no coinciden"
+                });
+            }
+
+            await _mediator.Send(updatePermissionCommand);
+            return NoContent();
         }
     }
 }
