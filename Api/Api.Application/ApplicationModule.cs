@@ -1,5 +1,6 @@
 ﻿using Api.Application.AutofacModules;
 using Autofac;
+using MediatR.Extensions.Autofac.DependencyInjection;
 
 namespace Api.Application
 {
@@ -8,6 +9,8 @@ namespace Api.Application
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<AutoMapperModule>();
+            builder.AddMediatR(ThisAssembly);
+
             base.Load(builder);
         }
     }
